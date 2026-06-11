@@ -1,0 +1,9 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import CatalogPage from "../components/catalog/CatalogPage.tsx";
+---
+
+<BaseLayout title="Catálogo">
+  <h1>Catálogo de artículos</h1>
+  <CatalogPage client:load />
+</BaseLayout>

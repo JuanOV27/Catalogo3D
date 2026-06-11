@@ -1,0 +1,9 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import CategoriasAdmin from "../../components/admin/CategoriasAdmin.tsx";
+---
+
+<BaseLayout title="Categorías · Admin">
+  <h1>Gestión de categorías</h1>
+  <CategoriasAdmin client:load />
+</BaseLayout>
