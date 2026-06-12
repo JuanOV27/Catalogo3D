@@ -1,5 +1,5 @@
 ### Maven ###
-target/
+target/*
 pom.xml.tag
 pom.xml.releaseBackup
 pom.xml.versionsBackup
@@ -11,13 +11,13 @@ buildNumber.properties
 .mvn/wrapper/maven-wrapper.jar
 
 ### IntelliJ IDEA ###
-.idea/
+.idea/*
 *.iws
 *.iml
 *.ipr
 
 ### VS Code ###
-.vscode/
+.vscode/*
 
 ### Spring Boot ###
 *.log
@@ -26,3 +26,6 @@ spring.log
 ### OS ###
 .DS_Store
 Thumbs.db
+
+### mongo db ###
+mongodb_local/*
