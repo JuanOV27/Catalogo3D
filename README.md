@@ -350,3 +350,5 @@ controllers/
   ClienteController.java    → /api/clientes   (POST público, resto ADMIN/propio)
   AuthController.java       → /api/auth/login (sin rol)
 ```
+=======
+# Catalogo3D
