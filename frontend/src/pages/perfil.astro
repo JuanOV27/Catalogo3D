@@ -1,0 +1,9 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PerfilForm from "../components/PerfilForm.tsx";
+---
+
+<BaseLayout title="Mi perfil">
+  <h1>Mi perfil</h1>
+  <PerfilForm client:load />
+</BaseLayout>

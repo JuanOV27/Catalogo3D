@@ -1,0 +1,9 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import AdminsAdmin from "../../components/admin/AdminsAdmin.tsx";
+---
+
+<BaseLayout title="Administradores · Admin">
+  <h1>Gestión de administradores</h1>
+  <AdminsAdmin client:load />
+</BaseLayout>

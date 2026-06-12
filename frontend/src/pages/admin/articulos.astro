@@ -1,0 +1,9 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ArticulosAdmin from "../../components/admin/ArticulosAdmin.tsx";
+---
+
+<BaseLayout title="Artículos · Admin">
+  <h1>Gestión de artículos</h1>
+  <ArticulosAdmin client:load />
+</BaseLayout>

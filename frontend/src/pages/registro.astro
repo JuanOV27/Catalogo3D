@@ -1,0 +1,9 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import RegisterForm from "../components/auth/RegisterForm.tsx";
+---
+
+<BaseLayout title="Registro">
+  <h1>Crear cuenta</h1>
+  <RegisterForm client:load />
+</BaseLayout>
