@@ -1,0 +1,6 @@
+frontend/
+target/
+uploads/
+.git/
+.mvn/
+*.md
