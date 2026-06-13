@@ -20,6 +20,7 @@ public class Articulo {
     private String tipoFilamento;
     private String imagenUrl;
     private boolean disponible;
+    private String enlaceWhatsapp;
     private LocalDateTime fechaCreacion;
 
     public Articulo() {}
@@ -59,6 +60,9 @@ public class Articulo {
 
     public boolean isDisponible() { return disponible; }
     public void setDisponible(boolean disponible) { this.disponible = disponible; }
+
+    public String getEnlaceWhatsapp() { return enlaceWhatsapp; }
+    public void setEnlaceWhatsapp(String enlaceWhatsapp) { this.enlaceWhatsapp = enlaceWhatsapp; }
 
     public LocalDateTime getFechaCreacion() { return fechaCreacion; }
     public void setFechaCreacion(LocalDateTime fechaCreacion) { this.fechaCreacion = fechaCreacion; }

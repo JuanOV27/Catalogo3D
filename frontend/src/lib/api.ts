@@ -65,6 +65,43 @@ async function request<T>(path: string, options: RequestInit = {}): Promise<T> {
   return data as T;
 }
 
+export const uploadApi = {
+  async upload(file: File): Promise<{ url: string }> {
+    const session = getSession();
+    const headers: Record<string, string> = {};
+    if (session) {
+      headers["X-User-Rol"] = session.rol;
+      headers["X-User-Id"] = session.id;
+    }
+
+    const body = new FormData();
+    body.append("file", file);
+
+    const res = await fetch(`${BASE_URL}/api/uploads`, {
+      method: "POST",
+      headers,
+      body,
+    });
+
+    const text = await res.text();
+    let data: unknown;
+    if (text) {
+      try {
+        data = JSON.parse(text);
+      } catch {
+        data = text;
+      }
+    }
+
+    if (!res.ok) {
+      const message = typeof data === "string" ? data : res.statusText || `Error ${res.status}`;
+      throw new ApiError(res.status, message);
+    }
+
+    return data as { url: string };
+  },
+};
+
 export const authApi = {
   login(email: string, password: string) {
     return request<LoginResponse>("/api/auth/login", {

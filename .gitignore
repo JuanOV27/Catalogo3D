@@ -26,3 +26,6 @@ spring.log
 ### OS ###
 .DS_Store
 Thumbs.db
+
+### Uploads ###
+/uploads/

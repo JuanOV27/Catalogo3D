@@ -1,6 +1,7 @@
 import { useState } from "react";
-import type { FormEvent } from "react";
+import type { ChangeEvent, FormEvent } from "react";
 import type { Articulo, Categoria } from "../../types/models";
+import { uploadApi, ApiError } from "../../lib/api";
 
 type ArticuloInput = Omit<Articulo, "id" | "fechaCreacion">;
 
@@ -25,7 +26,26 @@ export default function ArticuloForm({ initialValue, categorias, onSubmit, onCan
   const [tipoFilamento, setTipoFilamento] = useState(initialValue?.tipoFilamento ?? "");
   const [imagenUrl, setImagenUrl] = useState(initialValue?.imagenUrl ?? "");
   const [disponible, setDisponible] = useState(initialValue?.disponible ?? true);
+  const [enlaceWhatsapp, setEnlaceWhatsapp] = useState(initialValue?.enlaceWhatsapp ?? "");
   const [loading, setLoading] = useState(false);
+  const [uploading, setUploading] = useState(false);
+  const [uploadError, setUploadError] = useState("");
+
+  const handleImageChange = async (e: ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    setUploading(true);
+    setUploadError("");
+    try {
+      const { url } = await uploadApi.upload(file);
+      setImagenUrl(url);
+    } catch (err) {
+      setUploadError(err instanceof ApiError ? err.message : "No se pudo subir la imagen.");
+    } finally {
+      setUploading(false);
+      e.target.value = "";
+    }
+  };
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -43,6 +63,7 @@ export default function ArticuloForm({ initialValue, categorias, onSubmit, onCan
         tipoFilamento,
         imagenUrl,
         disponible,
+        enlaceWhatsapp: enlaceWhatsapp || undefined,
       });
     } finally {
       setLoading(false);
@@ -146,12 +167,26 @@ export default function ArticuloForm({ initialValue, categorias, onSubmit, onCan
         </div>
       </div>
       <div className="form-group">
-        <label htmlFor="art-imagenUrl">URL de imagen</label>
+        <label htmlFor="art-imagen">Imagen del artículo</label>
+        {imagenUrl && (
+          <div className="image-preview">
+            <img src={imagenUrl} alt="Vista previa" />
+            <button type="button" className="btn btn-sm" onClick={() => setImagenUrl("")}>
+              Quitar imagen
+            </button>
+          </div>
+        )}
+        <input id="art-imagen" type="file" accept="image/png,image/jpeg,image/gif,image/webp" onChange={handleImageChange} />
+        {uploading && <p className="muted">Subiendo imagen...</p>}
+        {uploadError && <p className="error-banner">{uploadError}</p>}
+      </div>
+      <div className="form-group">
+        <label htmlFor="art-whatsapp">Enlace de WhatsApp (compra)</label>
         <input
-          id="art-imagenUrl"
-          value={imagenUrl}
-          onChange={(e) => setImagenUrl(e.target.value)}
-          placeholder="https://..."
+          id="art-whatsapp"
+          value={enlaceWhatsapp}
+          onChange={(e) => setEnlaceWhatsapp(e.target.value)}
+          placeholder="https://wa.me/..."
         />
       </div>
       <div className="checkbox-row">
@@ -164,7 +199,7 @@ export default function ArticuloForm({ initialValue, categorias, onSubmit, onCan
         <label htmlFor="art-disponible">Disponible</label>
       </div>
       <div className="form-actions">
-        <button type="submit" className="btn btn-primary" disabled={loading}>
+        <button type="submit" className="btn btn-primary" disabled={loading || uploading}>
           {loading ? "Guardando..." : "Guardar"}
         </button>
         <button type="button" className="btn" onClick={onCancel}>

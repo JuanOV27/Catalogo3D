@@ -15,30 +15,23 @@ public class ArticuloController {
     @Autowired
     private ArticuloService articuloService;
 
-    // GET /api/articulos — ADMIN o CLIENTE
+    // GET /api/articulos — público
     @GetMapping
-    public ResponseEntity<?> obtenerTodos(@RequestHeader(value = "X-User-Rol", required = false) String rol) {
-        if (!"ADMIN".equals(rol) && !"CLIENTE".equals(rol)) return ResponseEntity.status(403).body("Acceso denegado.");
+    public ResponseEntity<?> obtenerTodos() {
         return ResponseEntity.ok(articuloService.obtenerTodos());
     }
 
-    // GET /api/articulos/{id} — ADMIN o CLIENTE
+    // GET /api/articulos/{id} — público
     @GetMapping("/{id}")
-    public ResponseEntity<?> obtenerPorId(
-            @PathVariable String id,
-            @RequestHeader(value = "X-User-Rol", required = false) String rol) {
-        if (!"ADMIN".equals(rol) && !"CLIENTE".equals(rol)) return ResponseEntity.status(403).body("Acceso denegado.");
+    public ResponseEntity<?> obtenerPorId(@PathVariable String id) {
         return articuloService.obtenerPorId(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    // GET /api/articulos/categoria/{categoriaId} — ADMIN o CLIENTE
+    // GET /api/articulos/categoria/{categoriaId} — público
     @GetMapping("/categoria/{categoriaId}")
-    public ResponseEntity<?> obtenerPorCategoria(
-            @PathVariable String categoriaId,
-            @RequestHeader(value = "X-User-Rol", required = false) String rol) {
-        if (!"ADMIN".equals(rol) && !"CLIENTE".equals(rol)) return ResponseEntity.status(403).body("Acceso denegado.");
+    public ResponseEntity<?> obtenerPorCategoria(@PathVariable String categoriaId) {
         return ResponseEntity.ok(articuloService.obtenerPorCategoria(categoriaId));
     }
 

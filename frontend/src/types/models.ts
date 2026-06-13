@@ -17,6 +17,7 @@ export interface Articulo {
   tipoFilamento: string;
   imagenUrl: string;
   disponible: boolean;
+  enlaceWhatsapp?: string;
   fechaCreacion: string;
 }
 

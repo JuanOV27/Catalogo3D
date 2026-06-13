@@ -1,7 +1,7 @@
 <?xml version="1.0" standalone="no"?>
 <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
  viewBox="0 0 270 320" preserveAspectRatio="xMidYMid meet">
-<g transform="translate(0,320) scale(0.1,-0.1)" stroke="none">
+<g transform="translate(0,320) scale(0.1,-0.1)" fill="#18181b" stroke="none">
 <path d="M1220 3075 c-134 -46 -465 -186 -593 -250 -198 -100 -376 -229 -420
 -308 -43 -74 -52 -150 -52 -417 1 -275 13 -376 71 -620 112 -468 336 -840 684
 -1138 82 -69 262 -180 359 -221 l103 -43 52 17 c177 58 420 225 591 407 171
@@ -54,10 +54,4 @@ c-3 35 -5 37 -38 38 -66 3 -70 4 -70 23 0 11 11 32 24 47 21 25 33 29 103 35
 36 28 82 -3 127 -14 20 -25 39 -25 42 0 12 -95 164 -118 189 l-26 27 -260 -1
 c-144 0 -271 -4 -282 -9z"/>
 </g>
-<style>
-  g { fill: #18181b; }
-  @media (prefers-color-scheme: dark) {
-    g { fill: #fff; }
-  }
-</style>
 </svg>

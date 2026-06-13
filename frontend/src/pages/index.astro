@@ -1,18 +1,45 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import ProductCarousel from "../components/ProductCarousel.tsx";
 ---
 
 <BaseLayout title="Inicio">
   <div class="hero">
-    <h1>Catálogo de Artículos Impresos en 3D</h1>
-    <p class="muted">
-      Explora nuestro catálogo de figuras, piezas y accesorios impresos en 3D. Inicia
-      sesión para ver el catálogo completo o regístrate como cliente.
-    </p>
-    <div class="hero-actions">
-      <a class="btn btn-primary" href="/catalogo">Ver catálogo</a>
-      <a class="btn" href="/login">Iniciar sesión</a>
-      <a class="btn" href="/registro">Registrarse</a>
+    <div class="hero-content">
+      <div class="hero-badge">
+        <img src="/logo.svg" alt="Catálogo 3D" />
+      </div>
+      <h1>Catálogo de Artículos Impresos en 3D</h1>
+      <p>
+        Figuras articuladas, llaveros, esculturas y piezas decorativas hechas a medida con
+        impresión 3D. Explora cada pieza y coordina tu compra directo por WhatsApp.
+      </p>
+    </div>
+    <svg class="hero-wave" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
+      <path
+        d="M0,40 C240,100 480,0 720,40 C960,80 1200,10 1440,50 L1440,120 L0,120 Z"
+        fill="var(--color-bg)"
+      ></path>
+    </svg>
+  </div>
+
+  <ProductCarousel client:load />
+
+  <div class="features-grid">
+    <div class="card feature-card">
+      <div class="feature-icon">🎨</div>
+      <h3>Diseños propios</h3>
+      <p>Piezas articuladas, figuras y decoración impresas con detalle y acabados cuidados.</p>
+    </div>
+    <div class="card feature-card">
+      <div class="feature-icon">🧵</div>
+      <h3>Materiales de calidad</h3>
+      <p>Impresión en PLA y PETG de alta resistencia, pensados para durar.</p>
+    </div>
+    <div class="card feature-card">
+      <div class="feature-icon">💬</div>
+      <h3>Compra por WhatsApp</h3>
+      <p>Encuentra tu pieza favorita y coordina la compra directo con un mensaje.</p>
     </div>
   </div>
 </BaseLayout>
